@@ -99,19 +99,8 @@
           :autoplay="autoPlay"
           @play="autoPlay = true"
         ></audio>
-        <VideoPlayer
-          v-else-if="
-            fileStore.req?.type == 'video' &&
-            authStore.user?.videoPlayerType === 'videojs'
-          "
-          ref="player"
-          :source="previewUrl"
-          :subtitles="subtitles"
-          :options="videoOptions"
-        >
-        </VideoPlayer>
         <SimpleVideoPlayer
-          v-else-if="
+          v-if="
             fileStore.req?.type == 'video' &&
             authStore.user?.videoPlayerType === 'simple'
           "
@@ -121,6 +110,14 @@
           :options="videoOptions"
         >
         </SimpleVideoPlayer>
+        <VideoPlayer
+          v-else-if="fileStore.req?.type == 'video'"
+          ref="player"
+          :source="previewUrl"
+          :subtitles="subtitles"
+          :options="videoOptions"
+        >
+        </VideoPlayer>
         <object v-else-if="isPdf" class="pdf" :data="previewUrl"></object>
         <div v-else-if="fileStore.req?.type == 'blob'" class="info">
           <div class="title">
