@@ -31,6 +31,13 @@
             v-model:aceEditorTheme="aceEditorTheme"
             id="aceTheme"
           ></AceEditorTheme>
+
+          <h3>{{ t("settings.videoPlayerType") }}</h3>
+          <VideoPlayerType
+            class="input input--block"
+            v-model:videoPlayerType="videoPlayerType"
+            id="videoPlayerType"
+          ></VideoPlayerType>
         </div>
 
         <div class="card-action">
@@ -90,6 +97,7 @@ import { useLayoutStore } from "@/stores/layout";
 import { users as api } from "@/api";
 import AceEditorTheme from "@/components/settings/AceEditorTheme.vue";
 import Languages from "@/components/settings/Languages.vue";
+import VideoPlayerType from "@/components/settings/VideoPlayerType.vue";
 import { computed, inject, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
@@ -107,6 +115,7 @@ const singleClick = ref<boolean>(false);
 const dateFormat = ref<boolean>(false);
 const locale = ref<string>("");
 const aceEditorTheme = ref<string>("");
+const videoPlayerType = ref<VideoPlayerType>("videojs");
 
 const passwordClass = computed(() => {
   const baseClass = "input input--block";
@@ -130,6 +139,7 @@ onMounted(async () => {
   singleClick.value = authStore.user.singleClick;
   dateFormat.value = authStore.user.dateFormat;
   aceEditorTheme.value = authStore.user.aceEditorTheme;
+  videoPlayerType.value = authStore.user.videoPlayerType || "videojs";
   layoutStore.loading = false;
   return true;
 });
@@ -174,6 +184,7 @@ const updateSettings = async (event: Event) => {
       singleClick: singleClick.value,
       dateFormat: dateFormat.value,
       aceEditorTheme: aceEditorTheme.value,
+      videoPlayerType: videoPlayerType.value,
     };
 
     await api.update(data, [
@@ -182,6 +193,7 @@ const updateSettings = async (event: Event) => {
       "singleClick",
       "dateFormat",
       "aceEditorTheme",
+      "videoPlayerType",
     ]);
     authStore.updateUser(data);
     $showSuccess(t("settings.settingsUpdated"));

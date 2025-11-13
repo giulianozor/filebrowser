@@ -243,7 +243,10 @@
     "userManagement": "User Management",
     "userUpdated": "User updated!",
     "username": "Username",
-    "users": "Users"
+    "users": "Users",
+    "videoPlayerType": "Video Player Type",
+    "videoPlayerVideoJS": "Advanced Player (Video.js)",
+    "videoPlayerSimple": "Simple HTML5 Player (v2.27.0)"
   },
   "sidebar": {
     "help": "Help",

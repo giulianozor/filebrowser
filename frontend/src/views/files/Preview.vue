@@ -99,6 +99,17 @@
           :autoplay="autoPlay"
           @play="autoPlay = true"
         ></audio>
+        <SimpleVideoPlayer
+          v-if="
+            fileStore.req?.type == 'video' &&
+            authStore.user?.videoPlayerType === 'simple'
+          "
+          ref="player"
+          :source="previewUrl"
+          :subtitles="subtitles"
+          :options="videoOptions"
+        >
+        </SimpleVideoPlayer>
         <VideoPlayer
           v-else-if="fileStore.req?.type == 'video'"
           ref="player"
@@ -176,6 +187,7 @@ import HeaderBar from "@/components/header/HeaderBar.vue";
 import Action from "@/components/header/Action.vue";
 import ExtendedImage from "@/components/files/ExtendedImage.vue";
 import VideoPlayer from "@/components/files/VideoPlayer.vue";
+import SimpleVideoPlayer from "@/components/files/SimpleVideoPlayer.vue";
 import { VueReader } from "vue-reader";
 import { computed, inject, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";

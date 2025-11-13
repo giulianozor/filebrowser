@@ -243,7 +243,10 @@
     "userManagement": "Gestione degli utenti",
     "userUpdated": "Utente aggiornato!",
     "username": "Nome utente",
-    "users": "Utenti"
+    "users": "Utenti",
+    "videoPlayerType": "Tipo di lettore video",
+    "videoPlayerVideoJS": "Lettore avanzato (Video.js)",
+    "videoPlayerSimple": "Lettore HTML5 semplice (v2.27.0)"
   },
   "sidebar": {
     "help": "Aiuto",

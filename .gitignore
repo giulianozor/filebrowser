@@ -37,3 +37,4 @@ build/
 
 default.nix
 Dockerfile.dev
+filebrowser-linux-amd64.tar.gz
