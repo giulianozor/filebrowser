@@ -22,6 +22,7 @@ interface SettingsDefaults {
   hideDotfiles: boolean;
   dateFormat: boolean;
   aceEditorTheme: string;
+  videoPlayerType: VideoPlayerType;
 }
 
 interface SettingsBranding {

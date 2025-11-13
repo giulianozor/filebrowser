@@ -100,13 +100,27 @@
           @play="autoPlay = true"
         ></audio>
         <VideoPlayer
-          v-else-if="fileStore.req?.type == 'video'"
+          v-else-if="
+            fileStore.req?.type == 'video' &&
+            authStore.user?.videoPlayerType === 'videojs'
+          "
           ref="player"
           :source="previewUrl"
           :subtitles="subtitles"
           :options="videoOptions"
         >
         </VideoPlayer>
+        <SimpleVideoPlayer
+          v-else-if="
+            fileStore.req?.type == 'video' &&
+            authStore.user?.videoPlayerType === 'simple'
+          "
+          ref="player"
+          :source="previewUrl"
+          :subtitles="subtitles"
+          :options="videoOptions"
+        >
+        </SimpleVideoPlayer>
         <object v-else-if="isPdf" class="pdf" :data="previewUrl"></object>
         <div v-else-if="fileStore.req?.type == 'blob'" class="info">
           <div class="title">
@@ -176,6 +190,7 @@ import HeaderBar from "@/components/header/HeaderBar.vue";
 import Action from "@/components/header/Action.vue";
 import ExtendedImage from "@/components/files/ExtendedImage.vue";
 import VideoPlayer from "@/components/files/VideoPlayer.vue";
+import SimpleVideoPlayer from "@/components/files/SimpleVideoPlayer.vue";
 import { VueReader } from "vue-reader";
 import { computed, inject, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";

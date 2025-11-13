@@ -14,7 +14,10 @@ interface IUser {
   viewMode: ViewModeType;
   sorting?: Sorting;
   aceEditorTheme: string;
+  videoPlayerType: VideoPlayerType;
 }
+
+type VideoPlayerType = "videojs" | "simple";
 
 type ViewModeType = "list" | "mosaic" | "mosaic gallery";
 
